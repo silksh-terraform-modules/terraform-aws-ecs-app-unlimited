@@ -255,3 +255,13 @@ variable "healthcheck" {
   })
   default = null
 }
+
+variable "volume_name" {
+  default = ""
+  description = "volume name, same as sourceVolume in mount_points"
+}
+
+variable "host_path" {
+  default = ""
+  description = "local path on host (volume mounted in fstab or local directory)"
+}
