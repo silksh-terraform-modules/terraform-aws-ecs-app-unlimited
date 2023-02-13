@@ -42,7 +42,7 @@ module "container" {
     }
   }
   
-  port_mappings = local.port_mappings
+  port_mappings = length(var.service_dns_name) > 0 ? local.port_mappings : null
 
   map_secrets = var.ssm_variables
 

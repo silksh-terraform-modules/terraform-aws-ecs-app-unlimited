@@ -1,5 +1,5 @@
 output "app_fqdn" {
-  value = aws_route53_record.this.fqdn
+  value = aws_route53_record.this[0].fqdn
 }
 
 output "app_fqdn_secondary" {

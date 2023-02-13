@@ -1,4 +1,5 @@
 resource "aws_lb_target_group" "this" {
+    count = length(var.service_dns_name) > 0 ? 1 : 0
     deregistration_delay          = var.deregistration_delay
     load_balancing_algorithm_type = "round_robin"
     name                          = "${var.service_name}-${var.env_name}-${substr(uuid(), 0, 3)}"
@@ -33,6 +34,7 @@ resource "aws_lb_target_group" "this" {
 }
 
 resource "aws_lb_listener_rule" "this" {
+  count = length(var.service_dns_name) > 0 ? 1 : 0
   listener_arn = var.lb_listener_arn
   # priority     = var.listener_priority
 
@@ -41,10 +43,10 @@ resource "aws_lb_listener_rule" "this" {
       values = (
         length(var.other_service_dns_names) > 0 ? 
           concat(
-            [aws_route53_record.this.name],
+            [aws_route53_record.this[0].name],
             var.other_service_dns_names
           ) :
-        [aws_route53_record.this.name]
+        [aws_route53_record.this[0].name]
       )
     }
   }
