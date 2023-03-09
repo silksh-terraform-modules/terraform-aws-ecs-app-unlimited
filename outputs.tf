@@ -7,5 +7,5 @@ output "app_fqdn_secondary" {
 }
 
 output "aws_lb_target_group_arn" {
-  value = aws_lb_target_group.backend.arn
+  value = aws_lb_target_group.this[0].arn
 }
