@@ -265,3 +265,8 @@ variable "host_path" {
   default = ""
   description = "local path on host (volume mounted in fstab or local directory)"
 }
+
+variable "enable_execute_command" {
+  default = false
+  description = "enable or no ecs exec"
+}

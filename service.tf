@@ -10,6 +10,7 @@ resource "aws_ecs_service" "this" {
     #propagate_tags                     = "NONE"
     scheduling_strategy                = "REPLICA"
     task_definition                    = aws_ecs_task_definition.this.arn
+    enable_execute_command             = var.enable_execute_command
 
     deployment_controller {
         type = "ECS"
