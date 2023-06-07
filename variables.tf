@@ -270,3 +270,9 @@ variable "enable_execute_command" {
   default = false
   description = "enable or no ecs exec"
 }
+
+variable "stop_timeout" {
+  default = null
+  description = "stop timeout before SIGKILL"
+  type = number
+}

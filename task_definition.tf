@@ -44,16 +44,12 @@ module "container" {
   
   port_mappings = length(var.service_dns_name) > 0 ? local.port_mappings : null
 
-  map_secrets = var.ssm_variables
-
-  map_environment = var.task_variables
-  
-  mount_points = var.mount_points
-
+  map_secrets       = var.ssm_variables
+  map_environment   = var.task_variables
+  mount_points      = var.mount_points
   environment_files = var.environment_files
-
-  healthcheck = var.healthcheck
-
+  healthcheck       = var.healthcheck
+  stop_timeout      = var.stop_timeout
 }
 
 resource "aws_ecs_task_definition" "this" {
