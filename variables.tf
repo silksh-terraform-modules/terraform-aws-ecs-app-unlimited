@@ -61,7 +61,8 @@ variable "cloudwatch_log_group" {
 }
 
 variable "cloudwatch_multiline_pattern" {
-  default = "^20"
+  # default = "^20"
+  default = ""
 }
 
 variable "ssm_variables" {
