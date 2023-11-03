@@ -7,7 +7,7 @@ locals {
     },
     {
       containerPort = var.container_port_secondary
-      hostPort      = var.host_port
+      hostPort      = var.host_port_secondary
       protocol      = var.service_protocol
     }
   ]:[
