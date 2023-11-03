@@ -52,6 +52,11 @@ variable "host_port" {
   description = "port binded outside - 0 means dynamic port assignment"
 }
 
+variable "host_port_secondary" {
+  default = "0"
+  description = "port binded outside - 0 means dynamic port assignment, secondary port"
+}
+
 variable "service_protocol" {
   default = "tcp"
 }
