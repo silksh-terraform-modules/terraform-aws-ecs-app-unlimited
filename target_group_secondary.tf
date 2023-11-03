@@ -16,7 +16,7 @@ resource "aws_lb_target_group" "secondary" {
         interval            = var.target_group_health_interval
         matcher             = var.target_group_health_matcher
         path                = var.target_group_health_path
-        port                = var.target_group_health_port
+        port                = var.target_group_health_port_secondary
         protocol            = "HTTP"
         timeout             = var.target_group_health_timeout
     }
