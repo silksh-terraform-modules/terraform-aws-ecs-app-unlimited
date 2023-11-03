@@ -201,6 +201,10 @@ variable "target_group_health_port" {
   default = "traffic-port"
 }
 
+variable "target_group_health_port_secondary" {
+  default = "traffic-port"
+}
+
 variable "target_group_health_timeout" {
   default = 5
 }
