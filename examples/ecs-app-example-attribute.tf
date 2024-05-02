@@ -32,17 +32,6 @@ module "ecs-app-example" {
   lb_listener_arn = aws_lb_listener.https_external.arn
   container_port = "8080"
 
-  zone_id_secondary = data.aws_route53_zone.zone_private.zone_id
-  service_dns_name_secondary = "example.${var.tld}"
-
-  lb_dns_name_secondary = aws_lb.internal.dns_name
-  lb_zone_id_secondary = aws_lb.internal.zone_id
-  lb_listener_arn_secondary = aws_lb_listener.http_internal.arn
-  ## define secondary port only if there is a secondary application on another port in the container
-  ## if you want to expose the same application on another loadbalancer (for ex. internal)
-  ## do not define that variable
-  # container_port_secondary = "8090"
-
   # data for creating gitlab variables json for deployment, 
   # have to be created first
   deployer_id      = module.deployer_user.deployer_id
@@ -53,4 +42,14 @@ module "ecs-app-example" {
   target_group_health_matcher = "200"
   target_group_health_path = "/"
 
+  # you need to configure purchase-option attribute in launchtemplate user-data, see below
+  # see https://docs.aws.amazon.com/AmazonECS/latest/developerguide/instance-details-tags.html
+  purchase_option = "on-demand"
+
+}
+
+
+resource "aws_launch_template" "example" {
+  # other configs
+  user_data = base64encode("echo ECS_INSTANCE_ATTRIBUTES={\"purchase-option\":\"on-demand\"} >> /etc/ecs/ecs.config")
 }

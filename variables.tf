@@ -27,16 +27,6 @@ variable "ecr_repository_url" {
   description = "ecr repository url"
 }
 
-variable "cpu_limit" {
-  default = "256"
-  description = "cpu limit for the task"
-}
-
-variable "memory_limit" {
-  default = "256"
-  description = "memory limit for the task"
-}
-
 variable "container_port" {
   default = "8080"
   description = "port expanded by the task"
@@ -285,4 +275,9 @@ variable "stop_timeout" {
   default = null
   description = "stop timeout before SIGKILL"
   type = number
+}
+
+variable purchase_option {
+  type        = string
+  default     = ""
 }

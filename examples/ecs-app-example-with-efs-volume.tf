@@ -39,9 +39,6 @@ module "ecs-app-example" {
 
   gitlab_branch = "main"
 
-  cpu_limit = "1024"
-  memory_limit = "1024"
-
   target_group_health_matcher = "200"
   target_group_health_path = "/"
 

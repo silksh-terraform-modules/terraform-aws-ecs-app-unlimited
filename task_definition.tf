@@ -23,13 +23,11 @@ locals {
 module "container" {
   count = var.cloudwatch_multiline_pattern == "" ? 0 : 1
   source  = "cloudposse/ecs-container-definition/aws"
-  version = "0.58.1"
+  # version = "0.58.1"
+  version = "v0.61.1"
   
   container_name  = var.service_name
   container_image = "${var.ecr_repository_url}:${var.docker_image_tag}"
-
-  container_cpu = var.cpu_limit
-  container_memory = var.memory_limit
 
   essential = true
 
@@ -56,13 +54,11 @@ module "container" {
 module "container_no_multiline" {
   count = var.cloudwatch_multiline_pattern == "" ? 1 : 0
   source  = "cloudposse/ecs-container-definition/aws"
-  version = "0.58.1"
+  # version = "0.58.1"
+  version = "v0.61.1"
   
   container_name  = var.service_name
   container_image = "${var.ecr_repository_url}:${var.docker_image_tag}"
-
-  container_cpu = var.cpu_limit
-  container_memory = var.memory_limit
 
   essential = true
 
@@ -88,9 +84,8 @@ module "container_no_multiline" {
 
 resource "aws_ecs_task_definition" "this" {
   family                   = "${var.service_name}-${var.env_name}"
-  cpu                      = var.cpu_limit
   execution_role_arn       = var.ecs_role_arn
-  memory                   = var.memory_limit
+  memory                   = 0
   network_mode             = "bridge"
   task_role_arn            = var.ecs_role_arn
 
